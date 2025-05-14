@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎬 Movie Rating Board</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h2>🎬 Submit a Movie Rating</h2>
+  <form method="POST">
+    <label>Name:</label>
+    <input name="username" required>
+
+    <label>Movie Title:</label>
+    <input name="movie" required>
+
+    <label>Rating (1–5):</label>
+    <input type="number" name="rating" min="1" max="5" required>
+
+    <label>Review:</label>
+    <textarea name="review" rows="3" required></textarea>
+
+    <button type="submit">Submit Rating</button>
+  </form>
+
+  <h2>⭐ Latest Ratings</h2>
+  <ul>
+    {% for row in data %}
+      <li>
+        <strong>{{ row[1] }}</strong> rated <em>{{ row[2] }}</em> — {{ row[3] }}/5<br>
+        <span>"{{ row[4] }}"</span>
+      </li>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>
